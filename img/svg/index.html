@@ -1,24 +1,81 @@
-<!DOCTYPE HTML SYSTEM>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" >
-	<meta name="description" 
-		content="Bienvenue sur ma page de présentation. Je suis Maylanie Mesnier, étudiante à Polytech Sophia Antipolis en Ingénieurie Informatique. "/>
-	<title >Maylanie Mesnier</title>
-	
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 </head>
-<body>
-<object type="image/svg+xml" data="img/svg/nesimu.svg" >
-  <param name="src" value="img/svg/nesimu.svg" >
-  <img src="facto.png" alt="svg image of facto.svg" />
-</object>
-<div id="nes">
-<div id="emulator"></div>
-</div>
 
-  <script>
+<body style='text-align: center;'>
+    <div>
+        <form method='post' action='up.php' enctype="multipart/form-data">
+            Here browse your nes file :
+            <input name='fileName' type='file'/>
+            <input type='submit'/>
+        </form>
+    </div>
+    <h1>JSNES</h1>
+    <div id="emulator"></div>
+    
+    <h2>Controls</h2>
+    <table id="controls" style="margin: 0 auto;">
+        <tr>
+            <th>Button</th>
+            <th>Player 1</th>
+            <th>Player 2</th>
+        </tr>
+        <tr>
+            <td>Left</td>
+            <td>Left</td>
+            <td>Num-4</td>
+        <tr>
+            <td>Right</td>
+            <td>Right</td>
+            <td>Num-6</td>
+        </tr>
+        <tr>
+            <td>Up</td>
+            <td>Up</td>
+            <td>Num-8</td>
+        </tr>
+        <tr>
+            <td>Down</td>
+            <td>Down</td>
+            <td>Num-2</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>X</td>
+            <td>Num-7</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>Z/Y</td>
+            <td>Num-9</td>
+        </tr>
+        <tr>
+            <td>Start</td>
+            <td>Enter</td>
+            <td>Num-1</td>
+        </tr>
+        <tr>
+            <td>Select</td>
+            <td>Ctrl</td>
+            <td>Num-3</td>
+        </tr>
+    </table>
+    
+     
+    <div id="gamepadPrompt"></div>
+    <div id="gamepadDisplay"></div>
+    
+    <div id="specDisplay" style='background-color:#CCC;'></div>
+    
+    
+        <script>
     var hasGP = false;
     var repGP;
     var input = {
@@ -291,5 +348,6 @@
     <!--[if IE]>
         <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
     <![endif]-->
+
 </body>
 </html>
