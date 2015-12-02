@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+</head>
+
+<body style='text-align: center;'>
+    <div>
+        <form method='post' action='up.php' enctype="multipart/form-data">
+            Here browse your nes file :
+            <input name='fileName' type='file'/>
+            <input type='submit'/>
+        </form>
+    </div>
+    <h1>JSNES</h1>
+    <div id="emulator"></div>
+    
+    <h2>Controls</h2>
+    <table id="controls" style="margin: 0 auto;">
+        <tr>
+            <th>Button</th>
+            <th>Player 1</th>
+            <th>Player 2</th>
+        </tr>
+        <tr>
+            <td>Left</td>
+            <td>Left</td>
+            <td>Num-4</td>
+        <tr>
+            <td>Right</td>
+            <td>Right</td>
+            <td>Num-6</td>
+        </tr>
+        <tr>
+            <td>Up</td>
+            <td>Up</td>
+            <td>Num-8</td>
+        </tr>
+        <tr>
+            <td>Down</td>
+            <td>Down</td>
+            <td>Num-2</td>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>X</td>
+            <td>Num-7</td>
+        </tr>
+        <tr>
+            <td>B</td>
+            <td>Z/Y</td>
+            <td>Num-9</td>
+        </tr>
+        <tr>
+            <td>Start</td>
+            <td>Enter</td>
+            <td>Num-1</td>
+        </tr>
+        <tr>
+            <td>Select</td>
+            <td>Ctrl</td>
+            <td>Num-3</td>
+        </tr>
+    </table>
+    
+     
+    <div id="gamepadPrompt"></div>
+    <div id="gamepadDisplay"></div>
+    
+    <div id="specDisplay" style='background-color:#CCC;'></div>
+    
+    
+        <script>
+    var hasGP = false;
+    var repGP;
+    var input = {
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+        a:false,
+        b:false,
+        start:false
+    };
+ 
+    function canGame() {
+        return "getGamepads" in navigator;
+    }
+ /*
+    function reportOnGamepad() {
+        var gp = navigator.getGamepads()[0];
+        var html = "";
+            html += "id: "+gp.id+"<br/>";
+ 
+        for(var i=0;i<gp.buttons.length;i++) {
+            html+= "Button "+(i+1)+": ";
+            if(gp.buttons[i].pressed) html+= " pressed";
+            html+= "<br/>";
+        }
+ 
+        for(var i=0;i<gp.axes.length; i+=2) {
+            html+= "Stick "+(Math.ceil(i/2)+1)+": "+gp.axes[i]+","+gp.axes[i+1]+"<br/>";
+        }
+        
+        $('#specDisplay').html(gp.axes[0]);
+        
+ 
+        $("#gamepadDisplay").html(html);
+    }*/
+    
+    function checkGamepad(input) {
+        var gp = navigator.getGamepads()[0];
+        var axeLF = gp.axes[0];
+        var axeUD = gp.axes[1];
+        console.log(gp.axes[1]);
+        if(axeLF < -0.5) {
+            input.left = true;
+            input.right = false;
+        } else if(axeLF > 0.5) {
+            input.left = false;
+            input.right = true;
+        } else {
+            input.left = false;
+            input.right = false;
+        }
+        
+        if (axeUD<-0.5) {
+            input.up=true;
+            input.down=false;
+        }
+        else if(axeUD>0.5){
+            input.up=false;
+            input.down=true;
+        }
+        else{
+            input.up=false;
+            input.down=false;
+        }
+        $('#specDisplay').html(JSON.stringify(input));
+        var html='';
+        for(var i=0;i<gp.buttons.length;i++) {
+            html+= "Button "+(i+1)+": ";
+            if(gp.buttons[i].pressed) html+= " pressed";
+            html+= "<br/>";
+        }
+        if(gp.buttons[0].pressed){
+            input.a=true;
+        }
+        else{
+            input.a=false;
+        }
+        if (gp.buttons[1].pressed) {
+            input.b=true;
+        }
+        else{
+            input.b=false;
+        }
+        if (gp.buttons[7].pressed) {
+            input.start=true;
+        }
+        else{
+            input.start=false;
+        }
+        
+        $("#gamepadDisplay").html(html);
+    }
+ 
+    $(document).ready(function() {
+        var isExecuteUp=false;
+        var isExecuteDown=false;
+        var isExecuteLeft=false;
+        var isExecuteRight=false;
+        var isExecuteA=false;
+        var isExecuteB=false;
+        var isExecuteStart=false;
+        if(canGame()) {
+ 
+            var prompt = "To begin using your gamepad, connect it and press any button!";
+            $("#gamepadPrompt").text(prompt);
+ 
+            $(window).on("gamepadconnected", function() {
+                hasGP = true;
+                $("#gamepadPrompt").html("Gamepad connected!");
+                console.log("connection event");
+                //repGP = window.setInterval(checkGamepad(input),100);
+                repGP = setInterval(function(){
+                    checkGamepad(input);
+                    
+                    if (input.left) {
+                        e = $.Event('keydown');
+                        e.keyCode= 37;
+                        $(document).trigger(e);
+                        //nes.Keyboard.keyDown(37);
+                        isExecuteLeft=true;
+                    }
+                    else{
+                        if (isExecuteLeft) {
+                            isExecuteLeft=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 37;
+                            $(document).trigger(e);
+                        }
+                    }
+                    if (input.up) {
+                        e = $.Event('keydown');
+                        e.keyCode= 38;
+                        $(document).trigger(e);
+                        isExecuteUp=true;
+                    }
+                    else{
+                        if (isExecuteUp) {
+                            isExecuteUp=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 38;
+                            $(document).trigger(e);
+                        }
+                    }
+                    if (input.right) {
+                        e = $.Event('keydown');
+                        e.keyCode= 39;
+                        $(document).trigger(e);
+                        isExecuteRight=true;
+                    }
+                    else{
+                        if (isExecuteRight) {
+                            isExecuteRight=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 39;
+                            $(document).trigger(e);
+                        }
+                    }
+                    
+                    if (input.down) {
+                        e = $.Event('keydown');
+                        e.keyCode= 40;
+                        $(document).trigger(e);
+                        isExecuteDown=true;
+                    }
+                    else{
+                        if (isExecuteDown) {
+                            isExecuteDown=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 40;
+                            $(document).trigger(e);
+                        }
+                    }
+                    
+                    if (input.a) {
+                        e = $.Event('keydown');
+                        e.keyCode= 88;
+                        $(document).trigger(e);
+                        isExecuteA=true;
+                    }
+                    else{
+                        if (isExecuteA) {
+                            isExecuteA=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 88;
+                            $(document).trigger(e);
+                        }
+                    }
+                    
+                    if (input.b) {
+                        e = $.Event('keydown');
+                        e.keyCode= 89;
+                        $(document).trigger(e);
+                        isExecuteB=true;
+                    }
+                    else{
+                        if (isExecuteB) {
+                            isExecuteB=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 89;
+                            $(document).trigger(e);
+                        }
+                    }
+                    
+                    if (input.start) {
+                        e = $.Event('keydown');
+                        e.keyCode= 13;
+                        $(document).trigger(e);
+                        isExecuteStart=true;
+                    }
+                    else{
+                        if (isExecuteStart) {
+                            isExecuteStart=false;
+                            e = $.Event('keyup');
+                            e.keyCode= 13;
+                            $(document).trigger(e);
+                        }
+                    }
+                },100);
+            });
+ 
+            $(window).on("gamepaddisconnected", function() {
+                console.log("disconnection event");
+                $("#gamepadPrompt").text(prompt);
+                window.clearInterval(repGP);
+            });
+ 
+            //setup an interval for Chrome
+            var checkGP = window.setInterval(function() {
+                console.log('checkGP');
+                if(navigator.getGamepads()[0]) {
+                    if(!hasGP) $(window).trigger("gamepadconnected");
+                    window.clearInterval(checkGP);
+                }
+            }, 500);
+        }
+ 
+    });
+    </script>
+    
+
+    <!--<script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
+    <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        var nes;
+        $(function() {
+            nes = new JSNES({
+                'ui': $('#emulator').JSNESUI({
+                    "Working": [
+                        ['Super Mario Bros. 1', 'roms/smb1.nes'],
+                        ['Super Mario Bros. 3', 'roms/smb3.nes'],
+                        ['Megaman 1', 'roms/megaman1.nes'],
+                        ['Megaman 2', 'roms/megaman2.nes'],
+                        ['Megaman 6', 'roms/Mega Man 6 (USA).nes'],
+                        ['owlia','roms/owlia_demo.nes']
+                    ]
+                })
+            });
+        });
+    </script>
+    <!--[if IE]>
+        <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
+    <![endif]-->
+
+</body>
+</html>
