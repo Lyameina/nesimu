@@ -1,0 +1,116 @@
+@font-face {
+    font-family: nowHereBound;
+    src: url(/font/Nowherebound.ttf);
+}
+
+
+*{
+ margin:0;
+ }
+
+#texte{
+
+font-family: nowHereBound;
+font-size: 30px;
+stroke:#35699e;
+fill:#35699e;
+}
+
+#signature{
+font-size:20px;
+}
+
+body a.fleche{
+	text-decoration: none;
+	color: white;
+	margin: 2px;
+	background-color:  #35699e;
+	font-family: nowHereBound;
+	font-size: 20px;
+	padding-left: 5px;	padding-right: 5px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+}
+
+body a:first-child{
+float:left;
+}
+body a:nth-child(2){
+float:right;
+}
+
+ body div{
+margin-top:4px;
+position: absolute;
+z-index: 10;
+width: 100%;
+}
+
+body #ordiImg{
+position: absolute;
+z-index: 0;
+}
+body #ecranImg{
+position: absolute;
+z-index: 0;
+}
+
+#Ours1{
+ cursor: pointer;
+}
+
+
+#Imprimante text{
+	font-family: ubuntu;
+	color: #35699e;
+}
+#Tableau pre{
+font-family:nowHereBound;
+font-size:16px;
+}
+
+/* Les pointeurs souris*/
+#Imprimante{
+cursor: pointer;
+}
+
+#ordiGauche{
+cursor: pointer;
+}
+
+#ordiDroite{
+cursor: pointer;
+}
+#ecranGauche{
+cursor: pointer;
+}
+#ecranDroite{
+cursor: pointer;
+}
+
+#zone_clicable{
+fill: rgba(0,0,0,0);
+cursor: pointer;
+}
+
+/* Pour le bout de code du tableau*/
+.red{
+    font-style: normal;
+    font-weight: bold;
+    color:#b53e3c;
+    }
+.blue{
+	font-style: normal;
+    font-weight: bold;
+	color: #35699e;
+}
+.green{
+	font-style: normal;
+	color:#349c49;
+}
+
+/* Probleme de positionnement sur chrome */
+
+.widget-body  {
+}
