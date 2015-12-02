@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/index.css">
-
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" >
 	<meta name="description" 
 		content="Bienvenue sur ma page de présentation. Je suis Maylanie Mesnier, étudiante à Polytech Sophia Antipolis en Ingénieurie Informatique. "/>
@@ -261,35 +261,35 @@
     
 
     <!--<script src="lib/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>-->
-    <script src="lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/nes.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/utils.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/cpu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/keyboard.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/mappers.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/papu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ppu.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/rom.js" type="text/javascript" charset="utf-8"></script>
-    <script src="source/ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/lib/dynamicaudio-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/nes.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/utils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/cpu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/keyboard.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/mappers.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/papu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/ppu.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/rom.js" type="text/javascript" charset="utf-8"></script>
+    <script src="NES_JS/source/ui.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         var nes;
         $(function() {
             nes = new JSNES({
                 'ui': $('#emulator').JSNESUI({
                     "Working": [
-                        ['Super Mario Bros. 1', 'roms/smb1.nes'],
-                        ['Super Mario Bros. 3', 'roms/smb3.nes'],
-                        ['Megaman 1', 'roms/megaman1.nes'],
-                        ['Megaman 2', 'roms/megaman2.nes'],
-                        ['Megaman 6', 'roms/Mega Man 6 (USA).nes'],
-                        ['owlia','roms/owlia_demo.nes']
+                        ['Super Mario Bros. 1', 'NES_JS/roms/smb1.nes'],
+                        ['Super Mario Bros. 3', 'NES_JS/roms/smb3.nes'],
+                        ['Megaman 1', 'NES_JS/roms/megaman1.nes'],
+                        ['Megaman 2', 'NES_JS/roms/megaman2.nes'],
+                        ['Megaman 6', 'NES_JS/roms/Mega Man 6 (USA).nes'],
+                        ['owlia','NES_JS/roms/owlia_demo.nes']
                     ]
                 })
             });
         });
     </script>
     <!--[if IE]>
-        <script type="text/vbscript" src="source/jsnes-ie-hacks.vbscript"></script>
+        <script type="text/vbscript" src="NES_JS/source/jsnes-ie-hacks.vbscript"></script>
     <![endif]-->
 </body>
 </html>
