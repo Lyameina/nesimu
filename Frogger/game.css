@@ -1,13 +1,4 @@
-body{
-    background-color: #9b9b9b;
-    background: url(images/background.jpg);
-/*    background: none;*/
-    background-color: black;
-    margin: 0;
-}
-
 #area{ 
-    background: url(images/wall.png);
     width: 400px;
     height: 700px;
     position: absolute;
