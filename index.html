@@ -1746,7 +1746,15 @@
 		<path fill="#6D6D6D" stroke="#000000" stroke-miterlimit="10" d="M1226.5,670.199c0,43.244-35.038,78.301-78.26,78.301H623.899
 			c-43.222,0-78.399-35.057-78.399-78.301V192.565c0-43.244,35.177-78.065,78.399-78.065h524.341
 			c43.222,0,78.26,34.821,78.26,78.065V670.199z"/>
-		<rect id="ecran_1_" x="621.5" y="195.5" fill="#4D4F5B" stroke="#000000" stroke-miterlimit="10" width="529" height="478"/>
+		<!--<rect id="ecran_1_" x="621.5" y="195.5" fill="#4D4F5B" stroke="#000000" stroke-miterlimit="10" width="529" height="478"/>-->
+		
+		<foreignObject  id="ecran_12_" x="621.5" y="195.5"  width="529" height="478">
+		  <body xmlns="http://www.w3.org/1999/xhtml">
+		    <div id="nes" style="width: 0px;">
+		      <div id="emulator"></div>
+		    </div>
+		  </body>
+		</foreignObject>
 	</g>
 </g>
 
@@ -1768,9 +1776,7 @@
 
 
 
-<div id="nes" style="width: 0px;">
-<div id="emulator"></div>
-</div>
+
 
   <script>
     var hasGP = false;
@@ -2047,16 +2053,35 @@
     <![endif]-->
     <script>
       $(document).ready(function(){
-	var widthNes = document.getElementById('ecran_1_').getAttribute('width');
-	var heightNes = document.getElementById('ecran_1_').getAttribute('height');
-	var xNes = document.getElementById('ecran_1_').getAttribute('x');
-	var yNes = document.getElementById('ecran_1_').getAttribute('y');
+	/*
+	  var widthSVG = $("svg").css("width");
+	  var heightSVG = $("svg").css("height");
+	  alert($('#ecran_1_').css("width"));
+	  var widthNes = document.getElementById('ecran_1_').getAttribute('width');
+	  var heightNes = document.getElementById('ecran_1_').getAttribute('height');
+	  var xNes = document.getElementById('ecran_1_').getAttribute('x');
+	  var yNes = document.getElementById('ecran_1_').getAttribute('y');
+	  //alert($(window).width()+" : "+$(window).height());
+	  document.getElementsByTagName("canvas")[0].style.width=widthNes*widthSVG/1280;
+	  document.getElementsByTagName("canvas")[0].style.height=heightNes*heightSVG/748;
+	  document.getElementsByTagName("canvas")[0].style.top=yNes*heightSVG/748;
+	  document.getElementsByTagName("canvas")[0].style.left=xNes*widthSVG/1280;
+	  document.getElementsByTagName("canvas")[0].style.position="fixed";
+	$( window ).resize(function() {
+	  var widthNes = document.getElementById('ecran_1_').getAttribute('width');
+	  var heightNes = document.getElementById('ecran_1_').getAttribute('height');
+	  var xNes = document.getElementById('ecran_1_').getAttribute('x');
+	  var yNes = document.getElementById('ecran_1_').getAttribute('y');
+	  //alert($(window).width()+" : "+$(window).height());
+	  document.getElementsByTagName("canvas")[0].style.width=widthNes*widthSVG/1280;
+	  document.getElementsByTagName("canvas")[0].style.height=heightNes*heightSVG/748;
+	  document.getElementsByTagName("canvas")[0].style.top=yNes*heightSVG/748;
+	  document.getElementsByTagName("canvas")[0].style.left=xNes*widthSVG/1280;
+	  document.getElementsByTagName("canvas")[0].style.position="fixed";
+	});*/
 	
-	document.getElementsByTagName("canvas")[0].style.width=widthNes;
-	document.getElementsByTagName("canvas")[0].style.height=heightNes;
-	document.getElementsByTagName("canvas")[0].style.top=yNes;
-	document.getElementsByTagName("canvas")[0].style.left=xNes;
-	document.getElementsByTagName("canvas")[0].style.position="fixed";
+	var canvas = $('canvas');
+        canvas.height($(window).height() - 12);
 	
 	$("#etiquette_6_").click(function(){
 	  //$("#emulator").find("div .nes-roms select").val('2');

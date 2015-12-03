@@ -19,12 +19,12 @@ html{
 	background: radial-gradient(#733626, #26120d); /** #6ccec8  #eedbf3 **/
 }
 #nes{
-	position : absolute;
+	/*position : absolute;
 	width: 250px;
 	height: 250px;
 	background-color: black;
 	top: 34%;
-	left: 53%;
+	left: 53%;*/
 }
 
 #texte{
