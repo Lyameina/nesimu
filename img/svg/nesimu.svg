@@ -7,7 +7,6 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
  viewBox="0 0 1280 748" enable-background="new 0 0 1280 748" xml:space="preserve">
 
-
 <title>Simulateur de Nes! Yay!</title>
 
 
@@ -1738,5 +1737,11 @@
 		<rect id="ecran_1_" x="621.5" y="195.5" fill="#4D4F5B" stroke="#000000" stroke-miterlimit="10" width="529" height="478"/>
 	</g>
 </g>
+
+<script type="text/javascript">
+	//alert(document.getElementById("ecran_1_").getAttribute("x"));
+	var tmp = document.getElementsByTagName('canvas')[0];
+	//ert(tmp);
+</script>
 
 </svg>

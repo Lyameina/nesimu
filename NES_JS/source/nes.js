@@ -180,6 +180,7 @@ JSNES.prototype = {
     // Loads a ROM file into the CPU and PPU.
     // The ROM file is validated first.
     loadRom: function(data) {
+        //alert(data);
         if (this.isRunning) {
             this.stop();
         }
