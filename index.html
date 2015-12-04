@@ -65,7 +65,7 @@
 				<rect x="113.822" y="400.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="113.822" y="406.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<rect id="etiquette_6_" x="148.155" y="279.899" fill="#E2D9D7" stroke="#2B2B2B" stroke-miterlimit="10" width="63.876" height="103.798"/>
+					<image id="etiquette_6_" xlink:href="/img/smb1.png" x="148.155" y="279.899" width="63.876" height="103.798"/>
 				<polygon fill="#4C4845" points="153.744,391.283 168.116,391.283 160.93,403.791 				"/>
 			</g>
 			<g id="c2">
@@ -98,7 +98,7 @@
 				<rect x="286.822" y="401.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="286.822" y="407.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<rect id="etiquette_13_" x="321.155" y="280.899" fill="#E2D9D7" stroke="#2B2B2B" stroke-miterlimit="10" width="63.876" height="103.798"/>
+					<image id="etiquette_13_" xlink:href="/img/smb3.jpg" x="321.155" y="280.899" width="63.876" height="103.798"/>
 				<polygon fill="#4C4845" points="326.744,392.283 341.116,392.283 333.93,404.791 				"/>
 			</g>
 			<g id="c3">
@@ -131,7 +131,7 @@
 				<rect x="113.822" y="661.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="113.822" y="667.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<rect id="etiquette_4_" x="148.155" y="540.899" fill="#E2D9D7" stroke="#2B2B2B" stroke-miterlimit="10" width="63.876" height="103.798"/>
+					<image xlink:href="/img/megaman1.jpg" id="etiquette_4_" x="148.155" y="540.899" width="63.876" height="103.798"/>
 				<polygon fill="#4C4845" points="153.744,652.283 168.116,652.283 160.93,664.791 				"/>
 			</g>
 			<g id="c4">
@@ -164,7 +164,7 @@
 				<rect x="286.822" y="660.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="286.822" y="666.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<rect id="etiquette_9_" x="321.155" y="539.899" fill="#E2D9D7" stroke="#2B2B2B" stroke-miterlimit="10" width="63.876" height="103.798"/>
+					<image id="etiquette_9_" xlink:href="/img/megaman2.png" x="321.155" y="539.899" width="63.876" height="103.798"/>
 				<polygon fill="#4C4845" points="326.744,651.283 341.116,651.283 333.93,663.791 				"/>
 			</g>
 		</g>
@@ -2087,6 +2087,25 @@
 	  //$("#emulator").find("div .nes-roms select").val('2');
 	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').attr('selected', true);
 	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').change();
+	  
+	});
+
+	$("#etiquette_13_").click(function(){
+	  //$("#emulator").find("div .nes-roms select").val('2');
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').attr('selected', true);
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').change();
+	  
+	});
+	$("#etiquette_4_").click(function(){
+	  //$("#emulator").find("div .nes-roms select").val('2');
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman1.nes"]').attr('selected', true);
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman1.nes"]').change();
+	  
+	});
+	$("#etiquette_9_").click(function(){
+	  //$("#emulator").find("div .nes-roms select").val('2');
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman2.nes"]').attr('selected', true);
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman2.nes"]').change();
 	  
 	});
       });
