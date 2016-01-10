@@ -65,7 +65,7 @@
 				<rect x="113.822" y="400.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="113.822" y="406.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<image id="etiquette_6_" xlink:href="/img/smb1.png" x="148.155" y="279.899" width="63.876" height="103.798"/>
+					<image id="etiquette_6_" xlink:href="/img/bsweeper.png" x="148.155" y="279.899" width="70.876" height="113.798"/>
 				<polygon fill="#4C4845" points="153.744,391.283 168.116,391.283 160.93,403.791 				"/>
 			</g>
 			<g id="c2">
@@ -131,7 +131,7 @@
 				<rect x="113.822" y="661.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="113.822" y="667.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<image xlink:href="/img/megaman1.jpg" id="etiquette_4_" x="148.155" y="540.899" width="63.876" height="103.798"/>
+					<image xlink:href="/img/upload.png" id="etiquette_4_" x="148.155" y="540.899" width="63.876" height="103.798" title="upload your rom"/>
 				<polygon fill="#4C4845" points="153.744,652.283 168.116,652.283 160.93,664.791 				"/>
 			</g>
 			<g id="c4">
@@ -164,7 +164,7 @@
 				<rect x="286.822" y="660.465" fill="#4C4845" width="29.542" height="1.598"/>
 				<rect x="286.822" y="666.055" fill="#4C4845" width="29.542" height="1.597"/>
 				
-					<image id="etiquette_9_" xlink:href="/img/megaman2.png" x="321.155" y="539.899" width="63.876" height="103.798"/>
+					<image id="etiquette_9_" xlink:href="/img/credit.png" x="321.155" y="539.899" width="63.876" height="103.798"/>
 				<polygon fill="#4C4845" points="326.744,651.283 341.116,651.283 333.93,663.791 				"/>
 			</g>
 		</g>
@@ -2042,7 +2042,10 @@
                         ['Megaman 1', 'NES_JS/roms/megaman1.nes'],
                         ['Megaman 2', 'NES_JS/roms/megaman2.nes'],
                         ['Megaman 6', 'NES_JS/roms/Mega Man 6 (USA).nes'],
-                        ['owlia','NES_JS/roms/owlia_demo.nes']
+                        ['owlia','NES_JS/roms/owlia_demo.nes'],
+                        ['BombSweeperbySnowBro.nes', 'NES_JS/roms/BombSweeperbySnowBro.nes'],
+                        ['SolarWars.nes', 'NES_JS/roms/SolarWars.nes']
+
                     ]
                 })
             });
@@ -2083,32 +2086,51 @@
 	var canvas = $('canvas');
         canvas.height(495 - 12);
 	
-	$("#etiquette_6_").click(function(){
+	$("#c1").click(function(){
+	  //$("#emulator").find("div .nes-roms select").val('2');
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/BombSweeperbySnowBro.nes"]').attr('selected', true);
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/BombSweeperbySnowBro.nes"]').change();
+	  
+	});
+
+	$("#c2").click(function(){
 	  //$("#emulator").find("div .nes-roms select").val('2');
 	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').attr('selected', true);
 	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').change();
 	  
 	});
-
-	$("#etiquette_13_").click(function(){
+	$("#c3").click(function(){
 	  //$("#emulator").find("div .nes-roms select").val('2');
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').attr('selected', true);
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').change();
+	  $("#upload_modal").show();
 	  
 	});
-	$("#etiquette_4_").click(function(){
-	  //$("#emulator").find("div .nes-roms select").val('2');
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman1.nes"]').attr('selected', true);
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman1.nes"]').change();
-	  
+	$("#c4").click(function(){
+	  	$("#credit_modal").show();
 	});
-	$("#etiquette_9_").click(function(){
-	  //$("#emulator").find("div .nes-roms select").val('2');
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman2.nes"]').attr('selected', true);
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/megaman2.nes"]').change();
-	  
+	$("#upload_close").click(function(){
+		$("#upload_modal").hide();
+	});
+	$("#credit_close").click(function(){
+		$("#credit_modal").hide();
 	});
       });
+
+	
     </script>
+    <div id="upload_modal">
+    	<form method='post' action='NES_JS/up.php' enctype="multipart/form-data">
+    		<span id="upload_close">X</span>
+            (doesn't work now) Here browse your nes file :
+            <input name='fileName' type='file'/>
+            <input type='submit'/>
+        </form>
+    </div>
+
+    <div id="credit_modal">
+        <span id="credit_close">X</span>
+    	<h1>Tips</h1>
+    	<p> Mario Bros is the propertie of nintendo, we do not hown the rights. et puis si tu upload des roms illegalement c'est pas notre problème, blablablablabla </p>
+    	<h1>Team</h1>
+    	<p> We are two student in an Ingenering school and we love retro-gaming, we hope you'll enjoy this website <p>
 </body>
 </html>

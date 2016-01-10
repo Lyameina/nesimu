@@ -47,3 +47,43 @@ font-size:20px;
 .nes-roms select{
 	/*display:none;*/
 }
+#c2, #c1, #c3, #c4{
+	cursor: pointer;
+}
+
+#upload_modal{
+	display:none;
+	width:50vw;
+	margin:auto;
+	position: relative;
+	top: 30vh;
+	background-color: #154036;
+	color:white;
+	padding:5vh;
+	box-shadow: 0px 0px 1000px 300px rgba(0,0,0,0.8);
+	border-radius: 5px;
+}
+#upload_modal span{
+	position:absolute;
+	top:1vh;
+	right:1vh;
+	cursor: pointer;
+}
+#credit_modal{
+	display:none;
+	width:50vw;
+	margin:auto;
+	position: relative;
+	top: 20vh;
+	background-color: #172544;
+	color:white;
+	padding:5vh;
+	box-shadow: 0px 0px 1000px 300px rgba(0,0,0,0.8);
+	border-radius: 5px;
+}
+#credit_modal span{
+	position:absolute;
+	top:1vh;
+	right:1vh;
+	cursor: pointer;
+}
