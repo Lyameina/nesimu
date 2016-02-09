@@ -180,6 +180,8 @@ if (typeof jQuery !== 'undefined') {
                 loadROM: function() {
                     var self = this;
                     self.updateStatus("Downloading...");
+                    console.log("in loadROM svg/ui.js :", escape(self.romSelect.val());
+
                     $.ajax({
                         url: escape(self.romSelect.val()),
                         xhr: function() {

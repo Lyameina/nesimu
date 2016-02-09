@@ -180,14 +180,23 @@ if (typeof jQuery !== 'undefined') {
                 loadROM: function() {
                     var self = this;
                     self.updateStatus("Downloading...");
+                    var url = "";
+                    if (self.romSelect.val().match("^blob")){
+                        url = self.romSelect.val();
+                    }else{
+                        url = escape(self.romSelect.val());
+                    }
+                    console.log("in loadROM ui.js :", url);
+
                     $.ajax({
-                        url: escape(self.romSelect.val()),
+                        url: url,
                         xhr: function() {
                             var xhr = $.ajaxSettings.xhr();
                             if (typeof xhr.overrideMimeType !== 'undefined') {
                                 // Download as binary
                                 xhr.overrideMimeType('text/plain; charset=x-user-defined');
                             }
+                            console.log("xhr: ", xhr);
                             self.xhr = xhr;
                             return xhr;
                         },

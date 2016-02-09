@@ -2033,20 +2033,16 @@
     <script src="NES_JS/source/ui.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
         var nes;
+        var working = [
+                        ['Super Mario Bros. 3', 'NES_JS/roms/smb3.nes'],
+                        ['owlia','NES_JS/roms/owlia_demo.nes'],
+                        ['BombSweeperbySnowBro.nes', 'NES_JS/roms/BombSweeperbySnowBro.nes'],
+                    ];
+
         $(function() {
             nes = new JSNES({
                 'ui': $('#emulator').JSNESUI({
-                    "Working": [
-                        ['Super Mario Bros. 1', 'NES_JS/roms/smb1.nes'],
-                        ['Super Mario Bros. 3', 'NES_JS/roms/smb3.nes'],
-                        ['Megaman 1', 'NES_JS/roms/megaman1.nes'],
-                        ['Megaman 2', 'NES_JS/roms/megaman2.nes'],
-                        ['Megaman 6', 'NES_JS/roms/Mega Man 6 (USA).nes'],
-                        ['owlia','NES_JS/roms/owlia_demo.nes'],
-                        ['BombSweeperbySnowBro.nes', 'NES_JS/roms/BombSweeperbySnowBro.nes'],
-                        ['SolarWars.nes', 'NES_JS/roms/SolarWars.nes']
-
-                    ]
+                    "Working": working
                 })
             });
         });
@@ -2095,8 +2091,8 @@
 
 	$("#c2").click(function(){
 	  //$("#emulator").find("div .nes-roms select").val('2');
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').attr('selected', true);
-	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb1.nes"]').change();
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').attr('selected', true);
+	  $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="NES_JS/roms/smb3.nes"]').change();
 	  
 	});
 	$("#c3").click(function(){
@@ -2118,13 +2114,35 @@
 	
     </script>
     <div id="upload_modal">
-    	<form method='post' action='NES_JS/up.php' enctype="multipart/form-data">
-    		<span id="upload_close">X</span>
-            (doesn't work now) Here browse your nes file :
-            <input name='fileName' type='file'/>
-            <input type='submit'/>
-        </form>
+    	
+    	<span id="upload_close">X</span>
+        (not perfect) Here browse your nes file :
+
+        <input type="file" id="i_file" value=""> 
     </div>
+
+    <script>
+    	$('#i_file').change( function(event) {
+			var tmppath = URL.createObjectURL(event.target.files[0]);
+    		//$("img").fadeIn("fast").attr('src',tmppath);
+
+    		working.push(['custom', tmppath]);
+    		console.log(tmppath);
+
+	        nes = new JSNES({
+	                'ui': $('#emulator').JSNESUI({
+	                    "Working": working
+	                })
+	            });
+	        $("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").append("<option value='"+tmppath+"'> Custom </option>");
+
+	        console.log($("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").html());
+    		$("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="'+tmppath+'"]').attr('selected', true);
+	  		$("#emulator").find("div .nes-roms select optgroup[label=\"Working\"]").find('option[value="'+tmppath+'"]').change();
+	  		$("#upload_modal").hide();
+	  		
+		});
+    </script>
 
     <div id="credit_modal">
         <span id="credit_close">X</span>
